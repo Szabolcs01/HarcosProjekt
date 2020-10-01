@@ -79,7 +79,18 @@ namespace HarcosProjekt
 
             } while (masikHarcos.eletero > 0 && this.eletero > 0);
         }
+        public void Gyogyul()
+        {
 
+            if (this.eletero == 0)
+            {
+                this.eletero = MaxEletero;
+            }
+            else
+            {
+                this.eletero += 3 + this.szint;
+            }
+        }
 
 
         public override string ToString()
