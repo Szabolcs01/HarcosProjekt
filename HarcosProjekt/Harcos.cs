@@ -23,10 +23,9 @@ namespace HarcosProjekt
         public int AlapEletero { get => alapEletero; set => alapEletero = value; }
         public int AlapSebzes { get => alapSebzes; set => alapSebzes = value; }
         public int Sebzes { get => alapSebzes + szint; }
-        public int SzintLepeshez { get => 10 + szint * 5; }
         public int MaxEletero { get => alapEletero + szint * 3; }
-
-
+        public int Szintlepeshez { get => 10 + szint * 5; }
+        
         public Harcos(string nev, int statuszSablon)
         {
             this.nev = nev;
@@ -48,6 +47,16 @@ namespace HarcosProjekt
                 this.alapSebzes = 5;
             }
             this.eletero = alapEletero;
+        }
+        
+
+
+
+        public override string ToString()
+        {
+            return String.Format("{0}\n – LVL:{1}\n – EXP: {2}/{3}\n – HP:{4}/{5}\n – DMG: {6}",
+                this.nev, this.szint, this.tapasztalat, Szintlepeshez, alapEletero, MaxEletero, Sebzes);
+           
         }
 
     }
