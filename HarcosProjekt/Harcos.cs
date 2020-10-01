@@ -48,7 +48,37 @@ namespace HarcosProjekt
             }
             this.eletero = alapEletero;
         }
-        
+        public void Megkuzd(Harcos masikHarcos)
+        {
+            do
+            {
+                if (masikHarcos.eletero > 0)
+                {
+                    this.eletero -= masikHarcos.Sebzes;
+                    if (this.eletero > 0)
+                    {
+                        this.tapasztalat += 5;
+                    }
+                    else
+                    {
+                        masikHarcos.tapasztalat += 10;
+                    }
+                }
+                if (this.eletero > 0)
+                {
+                    masikHarcos.eletero -= this.Sebzes;
+                    if (masikHarcos.eletero > 0)
+                    {
+                        masikHarcos.tapasztalat += 5;
+                    }
+                    else
+                    {
+                        this.tapasztalat += 10;
+                    }
+                }
+
+            } while (masikHarcos.eletero > 0 && this.eletero > 0);
+        }
 
 
 
