@@ -17,7 +17,19 @@ namespace HarcosProjekt
 
 
         public string Nev { get => nev; set => nev = value; }
-        public int Szint { get => szint; set => szint = value; }
+        public int Szint
+        {
+            get => szint;
+            set
+            {
+                if (this.tapasztalat>this.Szintlepeshez)
+                {
+                    this.tapasztalat -= this.Szintlepeshez;
+                    this.eletero = this.MaxEletero;
+
+                }
+            }
+        }
         public int Tapasztalat
         {
             get => tapasztalat;
