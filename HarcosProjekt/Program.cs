@@ -47,26 +47,25 @@ namespace HarcosProjekt
 
       public static  string betu = " ";
         public static void menu()
-        {
-                string betu = " ";
+        { 
 
+            char betu = 'n';
 
-                Console.WriteLine("Mit szeretnél tenni? ");
-            Console.WriteLine("a.) Megküzdeni egy harcossal" +
-                "\n\tb.) Gyógyulni" +
-                "\n\tc.) Kilépni");
+              
             do
             {
-                betu =Console.ReadLine();
-            
-
+                
                 if (!(betu.Equals("a") || betu.Equals("b") || betu.Equals("c")))
                 {
                     Console.WriteLine("Nincs ilyen menüpont, adja meg újra!");
                 }
-   
-        } while (!(betu=="a" || betu =="b" || betu == "c"));
+                Console.WriteLine("Mit szeretnél tenni? ");
+                Console.WriteLine("a.) Megküzdeni egy harcossal" + "\n\tb.) Gyógyulni" + "\n\tc.) Kilépni");
+                betu = char.Parse(Console.ReadLine());
+            } while (!(betu == 'a' || betu == 'b' || betu == 'c'));      
         }
+ static void Jatek()
+        { }
 
         static void Main(string[] args)
         {
@@ -83,10 +82,7 @@ namespace HarcosProjekt
             harcosok.Add(felhasznalo());
             Console.WriteLine(harcosok[harcosok.Count - 1]);
             harcoskokkiir();
-            do
-            {
-                menu();
-            } while (betu=="c");
+            menu();
             
             Console.ReadKey();
         }
