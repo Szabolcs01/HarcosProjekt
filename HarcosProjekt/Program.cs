@@ -37,17 +37,40 @@ namespace HarcosProjekt
             } while (!(statusz > 0 && statusz < 4));
             return new Harcos(felhasznaloNev,statusz);
         }
-        static void Main(string[] args)
+        public static void harcoskokkiir()
         {
-            harcosok = new List<Harcos>() { new Harcos("Zoli", 2), new Harcos("Zsombor", 1), new Harcos("Patrik", 3) };
-            beolvas("harcosok.csv");
-
             for (int i = 0; i < harcosok.Count; i++)
             {
-                Console.WriteLine(harcosok[i]);
-            }   
-          harcosok.Add(felhasznalo());
-            Console.WriteLine(harcosok[harcosok.Count-1]);
+                Console.WriteLine((i + 1) + ".\t" + harcosok[i]);
+            }
+        }
+        public static void menu() {
+        /* 
+            int kezdes = 0;
+
+            do
+            {
+
+            } while(kezdes==1);
+
+    */
+        }
+
+        static void Main(string[] args)
+        {
+            harcosok = new List<Harcos>() { new Harcos("Zoli", 2), new Harcos("Zsombor", 3), new Harcos("Patrik", 1) };
+            beolvas("harcosok.csv");
+
+          
+            for (int i = 0; i < harcosok.Count; i++)
+            {
+                                Console.WriteLine(+(i+1)+""+harcosok[i]);
+              
+            }
+       
+            harcosok.Add(felhasznalo());
+            Console.WriteLine(harcosok[harcosok.Count - 1]);
+            harcoskokkiir();
             Console.ReadKey();
         }
     }

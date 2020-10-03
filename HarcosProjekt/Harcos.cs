@@ -121,6 +121,8 @@ namespace HarcosProjekt
                 this.eletero += 3 + this.szint;
             }
         }
+
+
         public override string ToString()
         {
             return String.Format("{0} –LVL: {1} –EXP: {2}/{3} –HP: {4}/{5} –DMG: {6}",this.nev, this.szint, this.tapasztalat, Szintlepeshez, this.eletero, MaxEletero, Sebzes);
