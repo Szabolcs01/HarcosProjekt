@@ -44,10 +44,14 @@ namespace HarcosProjekt
                 Console.WriteLine((i + 1) + ".\t" + harcosok[i]);
             }
         }
+
+      public static  string betu = " ";
         public static void menu()
         {
-            string betu =" ";
-            Console.WriteLine("Mit szeretnél tenni? ");
+                string betu = " ";
+
+
+                Console.WriteLine("Mit szeretnél tenni? ");
             Console.WriteLine("a.) Megküzdeni egy harcossal" +
                 "\n\tb.) Gyógyulni" +
                 "\n\tc.) Kilépni");
@@ -79,7 +83,11 @@ namespace HarcosProjekt
             harcosok.Add(felhasznalo());
             Console.WriteLine(harcosok[harcosok.Count - 1]);
             harcoskokkiir();
-            menu();
+            do
+            {
+                menu();
+            } while (betu=="c");
+            
             Console.ReadKey();
         }
     }
