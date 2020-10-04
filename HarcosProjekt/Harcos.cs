@@ -22,11 +22,11 @@ namespace HarcosProjekt
             get => szint;
             set
             {
-                if (this.tapasztalat>this.Szintlepeshez)
+                if (this.Tapasztalat>=this.Szintlepeshez)
                 {
                     this.tapasztalat -= this.Szintlepeshez;
-                    this.eletero = this.MaxEletero;
-
+                    this.Eletero = this.MaxEletero;
+                    this.szint = value;
                 }
             }
         }
@@ -35,19 +35,32 @@ namespace HarcosProjekt
             get => tapasztalat;
             set
             {
-                if (Szintlepeshez <= this.tapasztalat)
+                if (Szintlepeshez <= this.Tapasztalat)
                 {
-                    Szint++;
+                    this.Szint++;
+                }
+                else
+                {
+                    this.tapasztalat = value;
                 }
             }
         }
+
         public int Eletero
         {
             get => eletero;
             set
             {
-                if (this.Eletero == 0) { this.tapasztalat = 0; }
-                else if (this.Eletero > this.MaxEletero) { this.Eletero = this.MaxEletero; }
+                if (this.Eletero <= 0)
+                {
+                    this.tapasztalat = 0;
+                    this.eletero = 0;
+                }
+                if (this.Eletero > MaxEletero)
+                {
+                    this.Eletero = MaxEletero;
+                }
+                else this.eletero = value;
             }
         }
         public int AlapEletero { get => alapEletero; set => alapEletero = value; }
@@ -76,49 +89,54 @@ namespace HarcosProjekt
                 this.alapEletero = 8;
                 this.alapSebzes = 5;
             }
-            this.eletero = alapEletero;
+            this.eletero = MaxEletero;
         }
         public void Megkuzd(Harcos masikHarcos)
         {
-            do
-            {
-                if (masikHarcos.eletero > 0)
-                {
-                    this.eletero -= masikHarcos.Sebzes;
-                    if (this.eletero > 0)
-                    {
-                        this.tapasztalat += 5;
-                    }
-                    else
-                    {
-                        masikHarcos.tapasztalat += 10;
-                    }
-                }
-                if (this.eletero > 0)
-                {
-                    masikHarcos.eletero -= this.Sebzes;
-                    if (masikHarcos.eletero > 0)
-                    {
-                        masikHarcos.tapasztalat += 5;
-                    }
-                    else
-                    {
-                        this.tapasztalat += 10;
-                    }
-                }
 
-            } while (masikHarcos.eletero > 0 && this.eletero > 0);
+            if (this == masikHarcos)
+            {
+                Console.WriteLine("A két harcos ugyan az a személy.");
+            }
+            if (this.eletero == 0 || masikHarcos.eletero == 0)
+            {
+                Console.WriteLine("A harcos életereje 0.");
+            }
+            else
+            {
+                
+                masikHarcos.Eletero -= this.Sebzes;
+                if (masikHarcos.Eletero > 0)
+                {
+                    this.Eletero -= masikHarcos.Sebzes;
+                }
+              
+                if (masikHarcos.Eletero > 0 && this.Eletero > 0)
+                {
+                    masikHarcos.Tapasztalat += 5;
+                    this.Tapasztalat += 5;
+                }
+                if (masikHarcos.Eletero > 0 && this.Eletero <= 0)
+                {
+                    masikHarcos.Tapasztalat += 15;
+                }
+                else if (masikHarcos.Eletero <= 0 && this.Eletero > 0)
+                {
+                    this.Tapasztalat += 15;
+                }
+             
+            }
         }
         public void Gyogyul()
         {
 
-            if (this.eletero == 0)
+            if (this.Eletero <= 0)
             {
-                this.eletero = MaxEletero;
+                this.Eletero = MaxEletero;
             }
             else
             {
-                this.eletero += 3 + this.szint;
+                this.Eletero = 3 + Szint;
             }
         }
         public override string ToString()
