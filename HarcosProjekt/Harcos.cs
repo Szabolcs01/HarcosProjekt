@@ -93,51 +93,38 @@ namespace HarcosProjekt
         }
         public void Megkuzd(Harcos masikHarcos)
         {
-
-            if (this == masikHarcos)
+            if (masikHarcos.Eletero > 0 && this.Eletero <= 0)
             {
-                Console.WriteLine("A két harcos ugyan az a személy.");
+                masikHarcos.Tapasztalat += 15;
+                if (masikHarcos.Tapasztalat > Szintlepeshez)
+                {
+                    Szint++;
+                    masikHarcos.eletero = MaxEletero;
+                }
+                this.tapasztalat = 0;
             }
-            if (this.eletero == 0 || masikHarcos.eletero == 0)
+            else if (masikHarcos.Eletero <= 0 && this.Eletero > 0)
             {
-                Console.WriteLine("A harcos életereje 0.");
-            }
-            else
-            {
-                
-                masikHarcos.Eletero -= this.Sebzes;
-                if (masikHarcos.Eletero > 0)
+                this.Tapasztalat += 15;
+                if (this.Tapasztalat > Szintlepeshez)
                 {
-                    this.Eletero -= masikHarcos.Sebzes;
+                    Szint++;
+                    this.eletero = MaxEletero;
                 }
-              
-                if (masikHarcos.Eletero > 0 && this.Eletero > 0)
-                {
-                    masikHarcos.Tapasztalat += 5;
-                    this.Tapasztalat += 5;
-                }
-                if (masikHarcos.Eletero > 0 && this.Eletero <= 0)
-                {
-                    masikHarcos.Tapasztalat += 15;
-                }
-                else if (masikHarcos.Eletero <= 0 && this.Eletero > 0)
-                {
-                    this.Tapasztalat += 15;
-                }
-             
+                masikHarcos.tapasztalat = 0;
             }
         }
-        public void Gyogyul()
+            public void Gyogyul()
         {
 
-            if (this.Eletero <= 0)
             {
-                this.Eletero = MaxEletero;
+                this.Eletero += 3 + Szint;
             }
-            else
+            if (this.eletero > MaxEletero)
             {
-                this.Eletero = 3 + Szint;
+                this.eletero = MaxEletero;
             }
+
         }
         public override string ToString()
         {
